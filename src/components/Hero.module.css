@@ -1,0 +1,290 @@
+.section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: #f6f1e8;
+}
+
+.centerGrid {
+  display: grid;
+  height: 100vh;
+  width: 100%;
+  place-items: center;
+  padding-inline: 16px;
+}
+
+.stage {
+  position: relative;
+  height: 540px;
+  width: min(96vw, 1200px);
+}
+
+@media (min-width: 640px) {
+  .stage {
+    height: 600px;
+  }
+}
+
+.pillGrid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 30%;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 0px;
+  padding-right: 40px;
+  pointer-events: none;
+}
+
+.pillLeft {
+  justify-self: start;
+  text-align: left;
+  margin-left: -5px;
+}
+
+.pillRight {
+  justify-self: end;
+}
+
+.pill {
+  pointer-events: auto;
+  width: fit-content;
+  max-width: min(44%, 520px);
+  display: inline-flex;
+  align-items: center;
+  padding: clamp(14px, 1.6vw, 22px) clamp(18px, 2.2vw, 26px);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.pillLeft {
+  justify-self: start;
+  text-align: left;
+}
+
+.pillRight {
+  justify-self: end;
+  text-align: left;
+}
+
+.pillText {
+  font-size: clamp(18px, 2.2vw, 30px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(9, 66, 34, 1);
+  white-space: nowrap;
+}
+
+/* Tablet / small screens: stack pills (top + bottom) */
+/* Mobile only: stack pills */
+@media (max-width: 639px) {
+  .pillGrid {
+    top: 12%;
+    transform: translateY(0);
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    padding-inline: 16px;
+  }
+
+  .pill {
+    max-width: 92vw;
+  }
+
+  .pillText {
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+.pillSpacer {
+  flex: 1;
+  min-width: clamp(300px, 40vw, 600px);
+}
+
+.pillNamePrefix {
+  font-weight: 600;
+}
+
+.pillNameStrong {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.centerAbs {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+}
+
+.centerWrap {
+  pointer-events: auto;
+}
+
+.shadow {
+  height: 58px;
+  width: 220px;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.9);
+  filter: blur(5px);
+  transform: scaleX(1.25);
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 0.75s step-end infinite;
+  color: rgba(9, 66, 34, 0.7);
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.pillRightFixed {
+  min-width: clamp(220px, 20vw, 340px);
+}
+
+@media (min-width: 640px) {
+  .shadow {
+    height: 35px;
+    width: 280px;
+    background: rgba(0, 0, 0, 0.77);
+    filter: blur(28px);
+  }
+}
+
+/* Tablet (iPad Mini/Air): smaller shadow so it doesn't overpower camera */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .shadow {
+    height: 30px;
+    width: 240px;
+    background: rgba(0, 0, 0, 0.65);
+    filter: blur(22px);
+    transform: scaleX(1.1);
+  }
+}
+
+.layerCamera {
+  z-index: 20;
+}
+
+.layerLens {
+  z-index: 30;
+}
+
+.layerCover {
+  z-index: 40;
+}
+
+.imgCamera {
+  height: auto;
+  width: 380px;
+  user-select: none;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.77));
+}
+
+@media (min-width: 640px) {
+  .imgCamera {
+    width: 490px;
+  }
+}
+
+@media (min-width: 768px) {
+  .imgCamera {
+    width: 620px;
+  }
+}
+
+.imgLens1 {
+  height: auto;
+  width: 210px;
+  user-select: none;
+  filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.77));
+}
+
+@media (min-width: 640px) {
+  .imgLens1 {
+    width: 255px;
+  }
+}
+
+@media (min-width: 768px) {
+  .imgLens1 {
+    width: 310px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .imgLens1 {
+    width: 250px;
+  }
+}
+
+.imgLens2 {
+  height: auto;
+  width: 195px;
+  user-select: none;
+  filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.77));
+}
+
+@media (min-width: 640px) {
+  .imgLens2 {
+    width: 245px;
+  }
+}
+
+@media (min-width: 768px) {
+  .imgLens2 {
+    width: 300px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .imgLens2 {
+    width: 240px;
+  }
+}
+
+.imgCover {
+  height: auto;
+  width: 230px;
+  user-select: none;
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.77));
+}
+
+@media (min-width: 640px) {
+  .imgCover {
+    width: 280px;
+  }
+}
+
+@media (min-width: 768px) {
+  .imgCover {
+    width: 340px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .imgCover {
+    width: 280px;
+  }
+}
