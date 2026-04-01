@@ -41,7 +41,7 @@
 }
 
 /* ==========================================================================
-   MOBILE VIEW (default) — Camera + beam + text
+   MOBILE VIEW (default) — Single full floating image
    ========================================================================== */
 
 .mobileView {
@@ -49,78 +49,22 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-}
-
-.cameraContainer {
   position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem 0;
+  aspect-ratio: 4 / 5; /* Adjusted for mobile portrait flow */
+  padding: 1.5rem;
 }
 
-.cameraWrapper {
-  width: clamp(220px, 75vw, 360px);
-  display: flex;
-  justify-content: center;
-}
-
-.cameraImage {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-.shadow {
-  width: clamp(80px, 22vw, 130px);
-  height: 14px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 9999px;
-  filter: blur(10px);
-  margin: -10px auto 0;
-}
-
-.contentContainer {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 4rem;
-  margin-top: -20px;
-}
-
-/* Removed glow per user request */
-
-.beamBackground {
+.mobileFloatWrapper {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
   bottom: 0;
-  background: rgba(35, 35, 35, 0.97);
-  clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
-  z-index: -1;
 }
 
-.heading {
-  font-size: clamp(26px, 7vw, 36px);
-  font-weight: 700;
-  color: #ffffff;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  z-index: 1;
-}
-
-.description {
-  font-size: clamp(13px, 3.8vw, 16px);
-  color: #cccccc;
-  text-align: center;
-  line-height: 1.75;
-  padding: 0 clamp(16px, 5vw, 28px);
-  max-width: 700px;
-  z-index: 1;
+.mobileFullImage {
+  object-fit: contain;
+  object-position: center;
 }
 
 /* ==========================================================================

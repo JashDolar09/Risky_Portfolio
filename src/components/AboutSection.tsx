@@ -45,33 +45,21 @@ const AboutSection: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* MOBILE: Camera + beam + text */}
+      {/* MOBILE: Single full image for small screens */}
       <div className={styles.mobileView}>
-        <div className={styles.cameraContainer}>
-          <motion.div
-            animate={shouldReduceMotion ? {} : floatingAnimation}
-            transition={shouldReduceMotion ? {} : floatingTransition}
-            className={styles.cameraWrapper}
-          >
-            <Image
-              src="/hero/camera_about_mobile.png"
-              alt="Sony Professional Camera"
-              width={900}
-              height={900}
-              className={styles.cameraImage}
-              priority
-            />
-          </motion.div>
-          <div className={styles.shadow} aria-hidden="true" />
-        </div>
-
-        <div className={styles.contentContainer}>
-          <div className={styles.beamBackground} />
-          <h2 className={styles.heading}>About Us</h2>
-          <p className={styles.description}>
-            I am a videographer specializing in anchor shoots and product videography, with hands-on experience creating visually compelling content. Skilled in camera operation, lighting, and composition, I deliver professional-quality footage tailored to each project. Proficient in product video editing using CapCut Pro, I ensure polished, brand-focused results. Known for attention to detail, efficient workflow, and consistently meeting deadlines, I bring creativity and precision to every shoot.
-          </p>
-        </div>
+        <motion.div
+          animate={shouldReduceMotion ? {} : floatingAnimation}
+          transition={shouldReduceMotion ? {} : floatingTransition}
+          className={styles.mobileFloatWrapper}
+        >
+          <Image
+            src="/hero/about_us_mobile.png"
+            alt="About Rishi Rajput Mobile"
+            fill
+            className={styles.mobileFullImage}
+            priority
+          />
+        </motion.div>
       </div>
     </section>
   );
