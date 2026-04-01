@@ -6,6 +6,7 @@ import { Hero } from "@/components/Hero";
 import { Loader } from "@/components/Loader";
 import { Menu } from "@/components/Menu";
 import { Navbar } from "@/components/Navbar";
+import AboutSection from "@/components/AboutSection";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -41,9 +42,11 @@ export default function Home() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <Hero startStackMs={2500} />
+            <AboutSection />
           </motion.main>
         )}
       </AnimatePresence>
     </div>
   );
 }
+
