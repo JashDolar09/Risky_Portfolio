@@ -6,9 +6,10 @@ import styles from "./Navbar.module.css";
 type NavbarProps = {
   onOpenMenu: () => void;
   isScrolled: boolean;
+  isAnimating: boolean;
 };
 
-export function Navbar({ onOpenMenu, isScrolled }: NavbarProps) {
+export function Navbar({ onOpenMenu, isScrolled, isAnimating }: NavbarProps) {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -37,6 +38,7 @@ export function Navbar({ onOpenMenu, isScrolled }: NavbarProps) {
           aria-label="Open menu"
           className={styles.button}
           onClick={onOpenMenu}
+          disabled={isAnimating}
         >
           <span className={styles.srOnly}>Open menu</span>
           <span className={styles.lines}>

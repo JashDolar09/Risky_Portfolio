@@ -15,6 +15,26 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(true);
+  const [isLargeDevice, setIsLargeDevice] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsLargeDevice(window.innerWidth >= 1024);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Update body scroll lock based on animation state
+  useEffect(() => {
+    if (isLargeDevice && (loading || isAnimating)) {
+      document.body.style.overflow = "hidden";
+    } else if (!isLargeDevice && loading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [loading, isAnimating, isLargeDevice]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,13 +47,21 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const t = window.setTimeout(() => setLoading(false), 2500);
-    return () => window.clearTimeout(t);
-  }, []);
+    // 2.5s Loader + 4s Hero Animation = ~6.5s for Desktop
+    const animDuration = isLargeDevice ? 6500 : 2500;
+    
+    const tLoader = window.setTimeout(() => setLoading(false), 2500);
+    const tAnim = window.setTimeout(() => setIsAnimating(false), animDuration);
+    
+    return () => {
+      window.clearTimeout(tLoader);
+      window.clearTimeout(tAnim);
+    };
+  }, [isLargeDevice]);
 
   return (
     <div className={styles.page}>
-      <Navbar onOpenMenu={() => setMenuOpen(true)} isScrolled={isScrolled} />
+      <Navbar onOpenMenu={() => setMenuOpen(true)} isScrolled={isScrolled} isAnimating={isAnimating} />
       <Menu open={menuOpen} onClose={() => setMenuOpen(false)} isScrolled={isScrolled} />
 
       <AnimatePresence mode="wait">

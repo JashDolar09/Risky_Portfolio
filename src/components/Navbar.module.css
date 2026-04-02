@@ -84,6 +84,12 @@
   border-color: rgba(255, 255, 255, 0.4);
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .lines {
   display: flex;
   flex-direction: column;
