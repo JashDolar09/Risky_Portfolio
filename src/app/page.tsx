@@ -7,6 +7,7 @@ import { Loader } from "@/components/Loader";
 import { Menu } from "@/components/Menu";
 import { Navbar } from "@/components/Navbar";
 import AboutSection from "@/components/AboutSection";
+import SkillSection from "@/components/SkillSection";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -43,6 +44,7 @@ export default function Home() {
           >
             <Hero startStackMs={2500} />
             <AboutSection />
+            <SkillSection />
           </motion.main>
         )}
       </AnimatePresence>

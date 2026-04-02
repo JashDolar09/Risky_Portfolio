@@ -1,7 +1,11 @@
+/* ==========================================================================
+   SKILL SECTION - REIMAGINED CAROUSEL UI
+   ========================================================================== */
+
 "use client";
 
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, useAnimation, PanInfo } from 'framer-motion';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import styles from './SkillSection.module.css';
 
 /**
@@ -92,107 +96,134 @@ const SKILLS_DATA = [
 ];
 
 const SkillSection: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(1); // Start from the second card (index 1) for better visual balance
-  const [dragOffset, setDragOffset] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const controls = useAnimation();
+  const [currentIndex, setCurrentIndex] = useState(2); // Start with more centered focus (3rd card)
+  const [isSwiping, setIsSwiping] = useState(false);
+  const touchX = useRef<number | null>(null);
 
   // Navigation handlers
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     if (currentIndex > 0) {
       setCurrentIndex(prev => prev - 1);
     }
-  };
+  }, [currentIndex]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (currentIndex < SKILLS_DATA.length - 1) {
       setCurrentIndex(prev => prev + 1);
     }
+  }, [currentIndex]);
+
+  // Touch handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchX.current = e.touches[0].clientX;
+    setIsSwiping(true);
   };
 
-  // Touch Swipe behavior using Framer Motion
-  const onDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    const threshold = 50; // pixels to trigger a change
-    if (info.offset.x > threshold && currentIndex > 0) {
-      setCurrentIndex(prev => prev - 1);
-    } else if (info.offset.x < -threshold && currentIndex < SKILLS_DATA.length - 1) {
-      setCurrentIndex(prev => prev + 1);
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchX.current === null) return;
+    const finalX = e.changedTouches[0].clientX;
+    const diff = touchX.current - finalX;
+    
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) handleNext();
+      else handlePrev();
     }
-    setDragOffset(0);
+    touchX.current = null;
+    setIsSwiping(false);
   };
 
   return (
     <section id="skills" className={styles.section}>
-      <h2 className={styles.title}>Skill</h2>
+      <h2 className={styles.title}>Skill Sets</h2>
 
-      {/* Main Carousel Container */}
-      <div className={styles.carouselWrapper} ref={containerRef}>
-        {/* Desktop Navigation Buttons */}
-        <button 
-          className={`${styles.navBtn} ${styles.prevBtn}`} 
-          onClick={handlePrev}
-          disabled={currentIndex === 0}
-          aria-label="Previous Skill"
-        >
-          <svg viewBox="0 0 24 24" width="24" height="24">
-            <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" fill="currentColor"/>
-          </svg>
-        </button>
-
-        <button 
-          className={`${styles.navBtn} ${styles.nextBtn}`} 
-          onClick={handleNext}
-          disabled={currentIndex === SKILLS_DATA.length - 1}
-          aria-label="Next Skill"
-        >
-          <svg viewBox="0 0 24 24" width="24" height="24">
-            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
-          </svg>
-        </button>
-
-        {/* Carousel Inner with Framer Motion */}
-        <motion.div
-           className={styles.carouselTrack}
-           drag="x"
-           dragConstraints={{ left: 0, right: 0 }}
-           onDragEnd={onDragEnd}
-           animate={{
-            x: `calc(50% - (var(--card-width) * ${currentIndex}) - (var(--card-gap) * ${currentIndex}) - (var(--card-width) / 2))`
-           }}
-           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        >
-          {SKILLS_DATA.map((item, index) => (
-            <motion.div
-              key={index}
-              className={`${styles.card} ${index === currentIndex ? styles.active : ""}`}
-              animate={{
-                scale: index === currentIndex ? 1.05 : 0.85,
-                opacity: Math.abs(index - currentIndex) <= 1 ? 1 : 0.4,
-                zIndex: index === currentIndex ? 10 : 1
-              }}
-              transition={{ duration: 0.4 }}
-            >
-              <div className={styles.cardContent}>
-                <h3 className={styles.cardCategory}>{item.category}</h3>
-                <ul className={styles.list}>
-                  {item.skills.map((skill, sIdx) => (
-                    <li key={sIdx} className={styles.listItem}>
-                      <span className={styles.bullet}>•</span> {skill}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-
-      {/* Progress / Scroll Indicator */}
-      <div className={styles.indicatorContainer}>
+      {/* Main Carousel Wrapper */}
+      <div className={styles.carouselContainer}>
+        
         <div 
-          className={styles.progressBar} 
-          style={{ width: `${((currentIndex + 1) / SKILLS_DATA.length) * 100}%` }} 
-        />
+          className={styles.carouselWrapper} 
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* Navigation Buttons (Desktop only visible via CSS) */}
+          <button 
+            className={`${styles.navBtn} ${styles.prevBtn}`} 
+            onClick={handlePrev}
+            disabled={currentIndex === 0}
+            aria-label="Previous Skill"
+          >
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" fill="currentColor"/>
+            </svg>
+          </button>
+
+          <button 
+            className={`${styles.navBtn} ${styles.nextBtn}`} 
+            onClick={handleNext}
+            disabled={currentIndex === SKILLS_DATA.length - 1}
+            aria-label="Next Skill"
+          >
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+            </svg>
+          </button>
+
+          <div className={styles.carouselTrack}>
+            <AnimatePresence initial={false}>
+              {SKILLS_DATA.map((item, index) => {
+                const distanceFromCenter = index - currentIndex;
+                const isActive = index === currentIndex;
+                const isVisible = Math.abs(distanceFromCenter) <= 2; // Only show center + 2 neighbors
+
+                if (!isVisible) return null;
+
+                return (
+                  <motion.div
+                    key={index}
+                    className={`${styles.card} ${isActive ? styles.active : ""}`}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{
+                      // Offset calculation for perfect spacing
+                      // 100% is the card width, plus some gap
+                      x: `calc(${distanceFromCenter * 105}%)`, 
+                      scale: isActive ? 1 : 0.85,
+                      opacity: isActive ? 1 : (Math.abs(distanceFromCenter) === 1 ? 0.6 : 0.2),
+                      zIndex: 10 - Math.abs(distanceFromCenter),
+                      filter: isActive ? "blur(0px)" : "blur(4px)",
+                    }}
+                    transition={{ 
+                      type: "spring", 
+                      stiffness: 200, 
+                      damping: 25,
+                      opacity: { duration: 0.3 }
+                    }}
+                  >
+                    <div className={styles.cardGlass} />
+                    
+                    <div className={styles.cardContent}>
+                      <h3 className={styles.cardCategory}>{item.category}</h3>
+                      <ul className={styles.list}>
+                        {item.skills.map((skill, sIdx) => (
+                          <li key={sIdx} className={styles.listItem}>
+                            <span className={styles.bullet}>•</span> {skill}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Progress Indicator - Properly Separated Offset Container */}
+        <div className={styles.indicatorContainer}>
+          <motion.div 
+            className={styles.progressBar} 
+            animate={{ width: `${((currentIndex + 1) / SKILLS_DATA.length) * 100}%` }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          />
+        </div>
       </div>
     </section>
   );
