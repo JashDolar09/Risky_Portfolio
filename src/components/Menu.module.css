@@ -13,9 +13,15 @@
   z-index: 100;
   height: 100dvh;
   width: min(420px, 92vw);
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(24px);
+  border-left: 1px solid rgba(0, 0, 0, 0.08); /* Default light theme border */
+  background: rgba(255, 255, 255, 0.4); /* Light background for Hero */
+  backdrop-filter: blur(40px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panelScrolled {
+  border-left-color: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.25); /* Darker background for dark sections */
 }
 
 .inner {
@@ -65,16 +71,43 @@
 }
 
 .itemButton {
-  width: 100%;
+  position: relative;
+  width: max-content;
   text-align: left;
   font-size: 13px;
+  font-weight: 700;
   letter-spacing: 0.28em;
   color: rgba(0, 0, 0, 0.8);
-  transition: color 150ms ease;
+  transition: all 0.4s ease;
+  background: none;
+  border: none;
+}
+
+.panelScrolled .itemButton {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.itemButton::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
 }
 
 .itemButton:hover {
   color: rgba(0, 0, 0, 1);
+}
+
+.itemButton:hover::after {
+  width: 100%;
+}
+
+.panelScrolled .itemButton:hover {
+  color: #ffffff;
 }
 
 .footer {
@@ -85,6 +118,11 @@
 .brand {
   font-size: 12px;
   letter-spacing: 0.18em;
-  color: rgba(0, 0, 0, 0.45);
+  color: rgba(0, 0, 0, 0.4);
+  transition: color 0.4s ease;
+}
+
+.panelScrolled .brand {
+  color: rgba(255, 255, 255, 0.4);
 }
 

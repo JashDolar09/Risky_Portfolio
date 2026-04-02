@@ -13,6 +13,17 @@ import styles from "./page.module.css";
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 80) setIsScrolled(true);
+      else setIsScrolled(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const t = window.setTimeout(() => setLoading(false), 2500);
@@ -21,8 +32,8 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
-      <Navbar onOpenMenu={() => setMenuOpen(true)} />
-      <Menu open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <Navbar onOpenMenu={() => setMenuOpen(true)} isScrolled={isScrolled} />
+      <Menu open={menuOpen} onClose={() => setMenuOpen(false)} isScrolled={isScrolled} />
 
       <AnimatePresence mode="wait">
         {loading ? (
@@ -42,9 +53,17 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Hero startStackMs={2500} />
+            <section id="home">
+              <Hero startStackMs={2500} />
+            </section>
+            
             <AboutSection />
             <SkillSection />
+            
+            <section id="contact" style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#030303' }}>
+              {/* Future Contact Info here */}
+              <h2 style={{ color: '#fff', fontSize: '2rem', letterSpacing: '0.2em' }}>GET IN TOUCH</h2>
+            </section>
           </motion.main>
         )}
       </AnimatePresence>

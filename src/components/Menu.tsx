@@ -6,11 +6,12 @@ import styles from "./Menu.module.css";
 type MenuProps = {
   open: boolean;
   onClose: () => void;
+  isScrolled: boolean;
 };
 
 const items = ["HOME", "ABOUT", "SKILL", "CONTACT"] as const;
 
-export function Menu({ open, onClose }: MenuProps) {
+export function Menu({ open, onClose, isScrolled }: MenuProps) {
   return (
     <AnimatePresence>
       {open ? (
@@ -27,7 +28,7 @@ export function Menu({ open, onClose }: MenuProps) {
           />
 
           <motion.aside
-            className={styles.panel}
+            className={`${styles.panel} ${isScrolled ? styles.panelScrolled : ""}`}
             initial={{ x: 40, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 40, opacity: 0 }}
@@ -47,17 +48,27 @@ export function Menu({ open, onClose }: MenuProps) {
 
               <nav className={styles.nav}>
                 <ul className={styles.list}>
-                  {items.map((label) => (
-                    <li key={label}>
-                      <button
-                        type="button"
-                        className={styles.itemButton}
-                        onClick={onClose}
-                      >
-                        {label}
-                      </button>
-                    </li>
-                  ))}
+                  {items.map((label) => {
+                    const sectionId = label.toLowerCase() === 'skill' ? 'skills' : label.toLowerCase();
+                    
+                    return (
+                      <li key={label}>
+                        <button
+                          type="button"
+                          className={styles.itemButton}
+                          onClick={() => {
+                            onClose();
+                            const element = document.getElementById(sectionId);
+                            if (element) {
+                              element.scrollIntoView({ behavior: "smooth" });
+                            }
+                          }}
+                        >
+                          {label}
+                        </button>
+                      </li>
+                    );
+                  })}
                 </ul>
               </nav>
 

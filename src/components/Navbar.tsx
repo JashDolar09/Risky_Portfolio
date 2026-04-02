@@ -5,13 +5,22 @@ import styles from "./Navbar.module.css";
 
 type NavbarProps = {
   onOpenMenu: () => void;
+  isScrolled: boolean;
 };
 
-export function Navbar({ onOpenMenu }: NavbarProps) {
+export function Navbar({ onOpenMenu, isScrolled }: NavbarProps) {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={styles.wrap}>
-        <div className={styles.logo} aria-label="Rishi logo">
+        {/* Logo Section */}
+        <div className={styles.logo} aria-label="Rishi logo" onClick={() => scrollToSection('home')}>
           <Image
             src="/person_Rishi.jpg"
             alt="Rishi"
@@ -21,6 +30,8 @@ export function Navbar({ onOpenMenu }: NavbarProps) {
             className={styles.logoImg}
           />
         </div>
+
+        {/* Hamburger Menu Button (No visible text) */}
         <button
           type="button"
           aria-label="Open menu"
