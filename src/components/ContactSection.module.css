@@ -1,0 +1,132 @@
+/* ==========================================================================
+   CONTACT SECTION STYLES - MINIMALIST PREMIUM
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding: 120px 40px;
+  background-color: #030303;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.titleWrapper {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.title {
+  font-size: clamp(40px, 8vw, 100px);
+  font-weight: 900;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  line-height: 0.9;
+  margin-bottom: 24px;
+  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.4) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* SOCIALS GRID */
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 80px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.link {
+  position: relative;
+  padding: 24px 40px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  opacity: 0.7;
+  transition: opacity 0.4s ease;
+}
+
+.link:hover .icon {
+  opacity: 1;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+}
+
+/* FOOTER AREA */
+.footer {
+  width: 100%;
+  max-width: 1200px;
+  padding-top: 60px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.copyright {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.credit {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.15);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* MOBILE ADJUSTMENTS */
+@media (max-width: 768px) {
+  .section { padding: 80px 24px; }
+  .socials { gap: 16px; }
+  .link {
+    width: 100%;
+    padding: 20px;
+    justify-content: center;
+  }
+}

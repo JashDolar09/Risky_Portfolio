@@ -1,30 +1,95 @@
+/* ==========================================================================
+   LENS-THEMED LOADER CSS - PREMIUM MINIMALIST
+   ========================================================================== */
+
 .root {
   position: fixed;
   inset: 0;
-  z-index: 50;
-  display: grid;
-  place-items: center;
-  background: #f6f1e8;
+  z-index: 9999;
+  background-color: #030303;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 60px;
 }
 
-.spinner {
-  height: 40px;
-  width: 40px;
-  border-radius: 9999px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-top-color: rgba(0, 0, 0, 0.7);
+.lensContainer {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.outerRing {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top-color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+}
+
+.aperture {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.blade {
+  position: absolute;
+  width: 1.5px;
+  height: 80px; /* Matching aperture container height */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, transparent 100%);
+  transform-origin: center center;
+}
+
+.center {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, #ffffff 0%, rgba(255, 255, 255, 0.1) 80%);
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+  z-index: 10;
+}
+
+/* TEXT AREA */
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
 .text {
-  font-size: 14px;
-  letter-spacing: 0.18em;
-  color: rgba(0, 0, 0, 0.6);
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  text-align: center;
+  opacity: 0.8;
 }
 
+.progress {
+  width: 120px;
+  height: 1px;
+  background: #ffffff;
+  transform-origin: left center;
+}

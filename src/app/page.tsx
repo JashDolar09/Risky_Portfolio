@@ -8,6 +8,7 @@ import { Menu } from "@/components/Menu";
 import { Navbar } from "@/components/Navbar";
 import AboutSection from "@/components/AboutSection";
 import SkillSection from "@/components/SkillSection";
+import ContactSection from "@/components/ContactSection";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -59,11 +60,7 @@ export default function Home() {
             
             <AboutSection />
             <SkillSection />
-            
-            <section id="contact" style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#030303' }}>
-              {/* Future Contact Info here */}
-              <h2 style={{ color: '#fff', fontSize: '2rem', letterSpacing: '0.2em' }}>GET IN TOUCH</h2>
-            </section>
+            <ContactSection />
           </motion.main>
         )}
       </AnimatePresence>

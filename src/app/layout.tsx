@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: "A modern, premium camera man portfolio.",
 };
 
+import { SoundProvider } from "@/components/SoundProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,7 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <SoundProvider>
+          {children}
+        </SoundProvider>
       </body>
     </html>
   );

@@ -1,11 +1,11 @@
 /* ==========================================================================
-   SKILL SECTION STYLES - REFINED & BALANCED
+   SKILL SECTION STYLES - REFINED & BALANCED (STATIC)
    ========================================================================== */
 
 .section {
   position: relative;
   width: 100%;
-  min-height: 90vh; /* Changed to vh for better vertical centering */
+  min-height: 90vh;
   background-color: #030303;
   color: #fff;
   display: flex;
@@ -22,7 +22,7 @@
   font-weight: 900;
   color: #ffffff;
   text-align: center;
-  margin-bottom: 60px; /* Increased margin */
+  margin-bottom: 60px;
   letter-spacing: -1px;
   z-index: 10;
   text-transform: uppercase;
@@ -36,13 +36,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 60px; /* Explicit gap between carousel and progress bar */
+  gap: 60px;
 }
 
 .carouselWrapper {
   position: relative;
   width: 100%;
-  height: 520px; /* Fixed height for consistency */
+  height: 520px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,7 +66,7 @@
   display: flex;
   flex-direction: column;
   padding: 50px 40px;
-  border-radius: 30px; /* More rounded as requested */
+  border-radius: 30px;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
   user-select: none;
   -webkit-user-drag: none;
@@ -168,13 +168,8 @@
   cursor: not-allowed;
 }
 
-.prevBtn {
-  left: 5%;
-}
-
-.nextBtn {
-  right: 5%;
-}
+.prevBtn { left: 5%; }
+.nextBtn { right: 5%; }
 
 /* INDICATOR (Bottom Progress Bar) */
 .indicatorContainer {
@@ -193,50 +188,22 @@
 }
 
 /* MOBILE RESPONSIVENESS */
-
 @media (max-width: 1024px) {
-  .prevBtn { left: 2%; }
-  .nextBtn { right: 2%; }
+  .prevBtn { left: 1%; }
+  .nextBtn { right: 1%; }
 }
 
 @media (max-width: 768px) {
-  .section {
-    padding: 60px 0;
-  }
-  
-  .carouselContainer {
-    gap: 40px;
-  }
-
-  .carouselWrapper {
-    height: 480px;
-  }
-
-  .card {
-    height: 440px;
-    padding: 30px;
-  }
-
-  .navBtn {
-    display: none; /* Hide buttons on mobile in favor of swipe */
-  }
+  .section { padding: 60px 0; }
+  .carouselContainer { gap: 40px; }
+  .carouselWrapper { height: 480px; }
+  .card { height: 440px; padding: 30px; }
+  .navBtn { display: none; }
 }
 
 @media (max-width: 480px) {
-  .title {
-    margin-bottom: 40px;
-  }
-  
-  .card {
-    padding: 30px 24px;
-  }
-
-  .cardCategory {
-    font-size: 18px;
-    margin-bottom: 1.5rem;
-  }
-
-  .list {
-    gap: 12px;
-  }
+  .title { margin-bottom: 40px; }
+  .card { width: 85vw; padding: 24px; }
+  .cardCategory { font-size: 18px; margin-bottom: 1.5rem; }
+  .list { gap: 12px; }
 }

@@ -1,10 +1,10 @@
 /* ==========================================================================
-   SKILL SECTION - REIMAGINED CAROUSEL UI
+   SKILL SECTION - BALANCED CAROUSEL UI
    ========================================================================== */
 
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './SkillSection.module.css';
 
@@ -96,27 +96,21 @@ const SKILLS_DATA = [
 ];
 
 const SkillSection: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(2); // Start with more centered focus (3rd card)
-  const [isSwiping, setIsSwiping] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(2);
   const touchX = useRef<number | null>(null);
 
   // Navigation handlers
   const handlePrev = useCallback(() => {
-    if (currentIndex > 0) {
-      setCurrentIndex(prev => prev - 1);
-    }
+    if (currentIndex > 0) setCurrentIndex(prev => prev - 1);
   }, [currentIndex]);
 
   const handleNext = useCallback(() => {
-    if (currentIndex < SKILLS_DATA.length - 1) {
-      setCurrentIndex(prev => prev + 1);
-    }
+    if (currentIndex < SKILLS_DATA.length - 1) setCurrentIndex(prev => prev + 1);
   }, [currentIndex]);
 
   // Touch handlers for mobile swipe
   const handleTouchStart = (e: React.TouchEvent) => {
     touchX.current = e.touches[0].clientX;
-    setIsSwiping(true);
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
@@ -129,22 +123,19 @@ const SkillSection: React.FC = () => {
       else handlePrev();
     }
     touchX.current = null;
-    setIsSwiping(false);
   };
 
   return (
     <section id="skills" className={styles.section}>
       <h2 className={styles.title}>Skill Sets</h2>
 
-      {/* Main Carousel Wrapper */}
       <div className={styles.carouselContainer}>
-        
         <div 
           className={styles.carouselWrapper} 
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          {/* Navigation Buttons (Desktop only visible via CSS) */}
+          {/* Nav Buttons (Desktop only via CSS visibility) */}
           <button 
             className={`${styles.navBtn} ${styles.prevBtn}`} 
             onClick={handlePrev}
@@ -172,7 +163,7 @@ const SkillSection: React.FC = () => {
               {SKILLS_DATA.map((item, index) => {
                 const distanceFromCenter = index - currentIndex;
                 const isActive = index === currentIndex;
-                const isVisible = Math.abs(distanceFromCenter) <= 2; // Only show center + 2 neighbors
+                const isVisible = Math.abs(distanceFromCenter) <= 2;
 
                 if (!isVisible) return null;
 
@@ -182,8 +173,6 @@ const SkillSection: React.FC = () => {
                     className={`${styles.card} ${isActive ? styles.active : ""}`}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{
-                      // Offset calculation for perfect spacing
-                      // 100% is the card width, plus some gap
                       x: `calc(${distanceFromCenter * 105}%)`, 
                       scale: isActive ? 1 : 0.85,
                       opacity: isActive ? 1 : (Math.abs(distanceFromCenter) === 1 ? 0.6 : 0.2),
@@ -216,7 +205,7 @@ const SkillSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Progress Indicator - Properly Separated Offset Container */}
+        {/* Progress Indicator */}
         <div className={styles.indicatorContainer}>
           <motion.div 
             className={styles.progressBar} 
