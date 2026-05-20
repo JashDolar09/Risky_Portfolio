@@ -198,7 +198,7 @@ export function DesktopHeroAnimation({ startStackMs = 2400 }: DesktopHeroAnimati
                 }
               >
                 <Image
-                  src="/hero/main_hero_camera.png"
+                  src="/hero/main_hero_camera.webp"
                   alt="Camera"
                   width={900}
                   height={900}
@@ -240,7 +240,7 @@ export function DesktopHeroAnimation({ startStackMs = 2400 }: DesktopHeroAnimati
                 }
               >
                 <Image
-                  src="/hero/camera_lens_1.png"
+                  src="/hero/camera_lens_1.webp"
                   alt="Lens"
                   width={700}
                   height={700}
@@ -281,7 +281,7 @@ export function DesktopHeroAnimation({ startStackMs = 2400 }: DesktopHeroAnimati
                 }
               >
                 <Image
-                  src="/hero/camera_lens_2.png"
+                  src="/hero/camera_lens_2.webp"
                   alt="Lens"
                   width={700}
                   height={700}
@@ -317,7 +317,7 @@ export function DesktopHeroAnimation({ startStackMs = 2400 }: DesktopHeroAnimati
                 }
               >
                 <Image
-                  src="/hero/camera_cover.png"
+                  src="/hero/camera_cover.webp"
                   alt="Camera cover"
                   width={700}
                   height={700}
