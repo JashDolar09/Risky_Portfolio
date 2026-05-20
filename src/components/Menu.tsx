@@ -9,7 +9,7 @@ type MenuProps = {
   isScrolled: boolean;
 };
 
-const items = ["HOME", "ABOUT", "SKILL", "CONTACT"] as const;
+const items = ["HOME", "ABOUT", "SKILL", "TOOLS", "REVIEWS", "CONTACT"] as const;
 
 export function Menu({ open, onClose, isScrolled }: MenuProps) {
   return (
@@ -49,7 +49,11 @@ export function Menu({ open, onClose, isScrolled }: MenuProps) {
               <nav className={styles.nav}>
                 <ul className={styles.list}>
                   {items.map((label) => {
-                    const sectionId = label.toLowerCase() === 'skill' ? 'skills' : label.toLowerCase();
+                    let sectionId = label.toLowerCase();
+                    if (label === "SKILL") sectionId = "skills";
+                    if (label === "TOOLS") sectionId = "gear";
+                    if (label === "REVIEWS") sectionId = "testimonials";
+                    if (label === "CONTACT") sectionId = "cta";
                     
                     return (
                       <li key={label}>
