@@ -70,7 +70,7 @@
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
   user-select: none;
   -webkit-user-drag: none;
-  overflow: hidden;
+  /* overflow: hidden; -- Removed to allow smoke/glow to expand outward */
 }
 
 /* Glassmorphism Background */
@@ -96,11 +96,78 @@
 
 .cardContent {
   position: relative;
-  z-index: 2;
+  z-index: 2; /* Content topmost */
   height: 100%;
+  padding: 50px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.cardWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   SMOKE / FOG EFFECT
+   ========================================================================== */
+
+.smoke {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0; /* Behind glass (z-1) and content (z-2) */
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: blur(40px);
+}
+
+.card:hover .smokeVisible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.3); /* Expands significantly on hover */
+}
+
+/* Layered Fog Components */
+.smoke::before,
+.smoke::after {
+  content: '';
+  position: absolute;
+  inset: -150px; /* Large reach for atmospheric fog */
+  animation: fogBreathing 12s ease-in-out infinite alternate;
+}
+
+.smoke::before {
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    transparent 70%
+  );
+  filter: blur(40px);
+}
+
+.smoke::after {
+  background: radial-gradient(
+    circle at 65% 65%,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.01) 40%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  animation-delay: -6s;
+}
+
+@keyframes fogBreathing {
+  0% { transform: scale(0.9) rotate(0deg); opacity: 0.5; }
+  50% { transform: scale(1.1) rotate(1deg); opacity: 0.8; }
+  100% { transform: scale(1) rotate(-0.5deg); opacity: 0.6; }
 }
 
 .cardCategory {

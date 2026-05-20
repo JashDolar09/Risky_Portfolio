@@ -186,17 +186,22 @@ const SkillSection: React.FC = () => {
                       opacity: { duration: 0.3 }
                     }}
                   >
-                    <div className={styles.cardGlass} />
-                    
-                    <div className={styles.cardContent}>
-                      <h3 className={styles.cardCategory}>{item.category}</h3>
-                      <ul className={styles.list}>
-                        {item.skills.map((skill, sIdx) => (
-                          <li key={sIdx} className={styles.listItem}>
-                            <span className={styles.bullet}>•</span> {skill}
-                          </li>
-                        ))}
-                      </ul>
+                    <div className={styles.cardWrapper}>
+                      {/* Smoke / Fog Effect (Behind everything) */}
+                      <div className={`${styles.smoke} ${isActive ? styles.smokeVisible : ''}`} />
+                      
+                      <div className={styles.cardGlass} />
+                      
+                      <div className={styles.cardContent}>
+                        <h3 className={styles.cardCategory}>{item.category}</h3>
+                        <ul className={styles.list}>
+                          {item.skills.map((skill, sIdx) => (
+                            <li key={sIdx} className={styles.listItem}>
+                              <span className={styles.bullet}>•</span> {skill}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </motion.div>
                 );
