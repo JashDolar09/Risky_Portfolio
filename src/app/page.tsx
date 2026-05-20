@@ -8,6 +8,8 @@ import { Menu } from "@/components/Menu";
 import { Navbar } from "@/components/Navbar";
 import AboutSection from "@/components/AboutSection";
 import SkillSection from "@/components/SkillSection";
+import GearSection from "@/components/GearSection";
+import TestimonialSection from "@/components/TestimonialSection";
 import ContactSection from "@/components/ContactSection";
 import styles from "./page.module.css";
 
@@ -88,6 +90,8 @@ export default function Home() {
             
             <AboutSection />
             <SkillSection />
+            <GearSection />
+            <TestimonialSection />
             <ContactSection />
           </motion.main>
         )}

@@ -23,3 +23,9 @@ body {
   min-height: 100%;
 }
 
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
