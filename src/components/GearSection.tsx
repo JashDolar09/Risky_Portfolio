@@ -12,6 +12,7 @@ const gearItems = [
     tagline: "Cinema-grade 4K storytelling",
     specs: ["4K 60FPS", "Low-light beast", "Fast AF"],
     image: "/Sony_A7IV_Rishi_videographer.webp",
+    imgSize: "w-full h-full",
     isMain: true,
     floatDelay: 0,
   },
@@ -21,6 +22,7 @@ const gearItems = [
     tagline: "The versatile prime killer",
     specs: ["Tack sharp", "Smooth bokeh", "Weather sealed"],
     image: "/Sigma_24_70m_f2.8_Rishi_Videographer.webp",
+    imgSize: "w-[120%] h-[120%]",
     isMain: false,
     floatDelay: 0.2,
   },
@@ -30,6 +32,7 @@ const gearItems = [
     tagline: "Buttery smooth movement",
     specs: ["Carbon fiber", "LiDAR focus", "Heavy payload"],
     image: "/DJI_RS_3_Pro_Rishi_Videographer.webp",
+    imgSize: "w-[105%] h-[105%]",
     isMain: false,
     floatDelay: 0.4,
   },
@@ -39,6 +42,7 @@ const gearItems = [
     tagline: "Cinematic studio lighting",
     specs: ["Daylight balanced", "Bowens mount", "Silent fan"],
     image: "/Aputure_120d_Rishi_Videographer.webp",
+    imgSize: "w-[75%] h-[75%]",
     isMain: false,
     floatDelay: 0.6,
   },
@@ -48,6 +52,7 @@ const gearItems = [
     tagline: "Dynamic colored atmospheres",
     specs: ["RGB LED Light", "FX effect mode", "Versatile"],
     image: "/Light_Rishi_Videographer.webp",
+    imgSize: "w-[120%] h-[120%]",
     isMain: false,
     floatDelay: 0.8,
   },
@@ -57,7 +62,8 @@ const gearItems = [
     tagline: "Crystal clear audio",
     specs: ["Wireless", "Noise Cancel", "Long Battery"],
     image: "/Mic_Rishi_Videographer.webp",
-    isMain: false,
+    imgSize: "w-[120%] h-[120%]",
+    isMain: true,
     floatDelay: 1.0,
   },
 ];
@@ -104,14 +110,18 @@ function GearCard({ item }: { item: typeof gearItems[0] }) {
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: item.floatDelay }}
         className="flex flex-col items-center z-10 w-full h-full"
       >
-        <div className={`relative w-full flex justify-center items-center mb-6 ${item.isMain ? "h-64 lg:h-72" : "h-40"}`}>
-          <Image 
-            src={item.image} 
-            alt={item.name}
-            fill
-            className="object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-110 mix-blend-lighten"
-            sizes={item.isMain ? "(max-width: 768px) 100vw, 500px" : "(max-width: 768px) 100vw, 300px"}
-          />
+        <div className={`relative w-full flex justify-center items-center mb-6 ${item.isMain ? "h-64 lg:h-72" : "h-48"}`}>
+          <div className="relative w-full h-full transition-transform duration-700 group-hover:scale-110 flex justify-center items-center">
+            <div className={`relative flex justify-center items-center ${item.imgSize || 'w-full h-full'}`}>
+              <Image 
+                src={item.image} 
+                alt={item.name}
+                fill
+                className="object-contain drop-shadow-2xl mix-blend-lighten"
+                sizes={item.isMain ? "(max-width: 768px) 100vw, 500px" : "(max-width: 768px) 100vw, 300px"}
+              />
+            </div>
+          </div>
         </div>
         
         <div className="text-center w-full mt-auto">
