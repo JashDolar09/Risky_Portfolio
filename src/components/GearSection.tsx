@@ -162,9 +162,9 @@ export default function GearSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         
         {/* Section Header */}
-        <div className="text-center mb-24">
+        <div className="text-center mb-20 lg:mb-24">
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tighter"
+            className="text-[clamp(2.5rem,5vw,5.5rem)] font-bold uppercase leading-[1.05] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-[#f0f0f0] to-[#888888] drop-shadow-sm mb-6 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -173,14 +173,13 @@ export default function GearSection() {
             Tools Behind The Vision
           </motion.h2>
           <motion.p
-            className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed"
+            className="text-white/40 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto font-light tracking-wide text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            Industry-standard equipment for uncompromising cinematic quality. 
-            Every piece carefully selected to tell your story perfectly.
+            Industry-standard equipment for uncompromising cinematic quality. Every piece carefully selected to tell your story perfectly.
           </motion.p>
         </div>
 

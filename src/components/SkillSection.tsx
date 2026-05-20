@@ -127,7 +127,26 @@ const SkillSection: React.FC = () => {
 
   return (
     <section id="skills" className={styles.section}>
-      <h2 className={styles.title}>Skill Sets</h2>
+      <div className="text-center mb-20 lg:mb-24 relative z-10 px-6">
+        <motion.h2 
+          className="text-[clamp(2.5rem,5vw,5.5rem)] font-bold uppercase leading-[1.05] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-[#f0f0f0] to-[#888888] drop-shadow-sm mb-6 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          Skill Sets
+        </motion.h2>
+        <motion.p
+          className="text-white/40 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto font-light tracking-wide text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+        >
+          Mastering every aspect of production to craft unforgettable visual experiences.
+        </motion.p>
+      </div>
 
       <div className={styles.carouselContainer}>
         <div 

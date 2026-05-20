@@ -148,9 +148,9 @@ export default function TestimonialSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         
         {/* Section Header */}
-        <div className="text-center mb-20 lg:mb-28">
+        <div className="text-center mb-20 lg:mb-28 relative z-10">
           <motion.h2 
-            className="text-3xl md:text-5xl lg:text-5xl font-bold text-white mb-4 tracking-tighter uppercase"
+            className="text-[clamp(2.5rem,5vw,5.5rem)] font-bold uppercase leading-[1.05] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-[#f0f0f0] to-[#888888] drop-shadow-sm mb-6 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -159,7 +159,7 @@ export default function TestimonialSection() {
             Trusted By Creators & Brands
           </motion.h2>
           <motion.p
-            className="text-white/40 text-sm md:text-base max-w-xl mx-auto font-light tracking-wide"
+            className="text-white/40 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto font-light tracking-wide text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

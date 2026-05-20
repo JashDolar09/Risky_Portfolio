@@ -36,7 +36,7 @@ const AboutSection: React.FC = () => {
           className={styles.desktopFloatWrapper}
         >
           <Image
-            src="/hero/about_us_full.png"
+            src="/about_us_full_Rishi_Videographer.png"
             alt="About Rishi Rajput"
             fill
             className={styles.desktopFullImage}
@@ -53,7 +53,7 @@ const AboutSection: React.FC = () => {
           className={styles.mobileFloatWrapper}
         >
           <Image
-            src="/hero/about_us_mobile.png"
+            src="/about_us_mobile_Rishi_Videographer.png"
             alt="About Rishi Rajput Mobile"
             fill
             className={styles.mobileFullImage}

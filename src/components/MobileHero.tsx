@@ -111,7 +111,7 @@ export function MobileHero() {
               }
             >
               <Image
-                src="/hero/mobile_hero_camera.png"
+                src="/hero/mobile_hero_camera.webp"
                 alt="Camera"
                 width={900}
                 height={900}
