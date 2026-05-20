@@ -10,7 +10,8 @@ import AboutSection from "@/components/AboutSection";
 import SkillSection from "@/components/SkillSection";
 import GearSection from "@/components/GearSection";
 import TestimonialSection from "@/components/TestimonialSection";
-import ContactSection from "@/components/ContactSection";
+import CtaSection from "@/components/CtaSection";
+import Footer from "@/components/Footer";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -92,7 +93,8 @@ export default function Home() {
             <SkillSection />
             <GearSection />
             <TestimonialSection />
-            <ContactSection />
+            <CtaSection />
+            <Footer />
           </motion.main>
         )}
       </AnimatePresence>
